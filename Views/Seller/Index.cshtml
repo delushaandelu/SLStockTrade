@@ -1,0 +1,23 @@
+﻿@model IEnumerable<SL_StockTrade.Models.Seller>
+
+<table class="table-bordered">
+    <thead>
+        <tr>
+            <th>Business Name</th>
+            <th>Location</th>
+            <th>Sales Good Type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var seller in Model)
+        {
+            <tr>
+                <td>@seller.BusinessName</td>
+                <td>@seller.Location</td>
+                <td>@seller.SalesGoodType</td>
+                <td>@seller.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
