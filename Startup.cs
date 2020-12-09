@@ -8,17 +8,19 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using SL_StockTrade.Models;
 
 namespace SL_StockTrade
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private IConfiguration _config;
 
-        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration config)
+        {
+            _config = config;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -30,12 +32,13 @@ namespace SL_StockTrade
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSingleton<ISellerRepository, MockSallerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+
         {
             if (env.IsDevelopment())
             {
@@ -45,7 +48,7 @@ namespace SL_StockTrade
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+                        
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
@@ -53,7 +56,7 @@ namespace SL_StockTrade
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Seller}/{action=Index}/{id?}");
             });
         }
     }
