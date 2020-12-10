@@ -13,8 +13,8 @@ namespace SL_StockTrade.Models
         {
             _sellerList = new List<Seller>()
             {
-                new Seller(){ Id=1,BusinessName = "Ape Kade",InChargePerson = "Delushaan", Country = "Singapore",Location = "WoodLand",Address = "Choa Chu Kang Ave 3",Telephone = "0000000000", Mobile = "1111111111",Email = "delushaan@outlook.com",PlatformCharge = 0.5,RegistredDate = DateTime.Now.ToString(),BannerImg = "~img/banner",ProfileImg = "~img/profile",SalesGoodType = "spices"},
-                new Seller(){ Id=2, BusinessName = "Ape Kade 2",InChargePerson = "Ruchiranga",Country = "Canada",Location = "Torrento",Address = "Choa Chu Kang Ave 3",Telephone = "0000000000",Mobile = "1111111111",Email = "delushaan@outlook.com", PlatformCharge = 0.5,RegistredDate = DateTime.Now.ToString(),BannerImg = "~img/banner",ProfileImg = "~img/profile",SalesGoodType = "spices"}
+                new Seller(){ Id=1,BusinessName = "Ape kade",InChargePerson = "Delushaan", Country = EnumCountry.Singapore,Location = "WoodLand",Address = "Choa Chu Kang Ave 3",Telephone = "0000000000", Mobile = "1111111111",Email = "delushaan@outlook.com",PlatformCharge = 0.5,RegistredDate = DateTime.Now.ToString(),BannerImg = "~img/banner",ProfileImg = "~img/profile",SalesGoodType = EnumSalesGoodType.Tea, Description = "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."},
+                new Seller(){ Id=2, BusinessName = "Ape Kade 2",InChargePerson = "Ruchiranga",Country = EnumCountry.Dubai,Location = "Torrento",Address = "Choa Chu Kang Ave 3",Telephone = "0000000000",Mobile = "1111111111",Email = "delushaan@outlook.com", PlatformCharge = 0.5,RegistredDate = DateTime.Now.ToString(),BannerImg = "~img/banner",ProfileImg = "~img/profile",SalesGoodType = EnumSalesGoodType.Clouth, Description = "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."}
             };
         }
 

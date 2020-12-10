@@ -23,16 +23,39 @@ namespace SL_StockTrade.Controllers
             var model = _sallesRepository.GetAllSellers();
             return View(model);
         }
-        
-        public ViewResult Details()
+              
+        public ViewResult Details(int id)
         {
             SellerDetailsViewModel sellerDetailsViewModel = new SellerDetailsViewModel()
             {
-                Seller = _sallesRepository.GetSeller(1),
+                Seller = _sallesRepository.GetSeller(id),
                 PageTitle = "Seller Details"
             };
 
             return View(sellerDetailsViewModel);
+        }
+
+        //Admin Side Controls
+        public ViewResult AdminIndex()
+        {
+            var model = _sallesRepository.GetAllSellers();
+            return View(model);
+        }
+
+        public ViewResult AdminDetails(int id)
+        {
+            SellerDetailsViewModel sellerDetailsViewModel = new SellerDetailsViewModel()
+            {
+                Seller = _sallesRepository.GetSeller(id),
+                PageTitle = "Seller Details"
+            };
+
+            return View(sellerDetailsViewModel);
+        }
+
+        public ViewResult AdminCreateSeller()
+        {
+            return View();
         }
     }
 }

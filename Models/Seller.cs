@@ -10,7 +10,7 @@ namespace SL_StockTrade.Models
         public int Id { get; set; }
         public string BusinessName { get; set; }
         public string InChargePerson { get; set; }
-        public string Country { get; set; }
+        public EnumCountry Country { get; set; }
         public string Location { get; set; }
         public string Address { get; set; }
         public string Telephone { get; set; }
@@ -21,8 +21,10 @@ namespace SL_StockTrade.Models
         public string RegistredDate { get; set; }
         public string BannerImg { get; set; }
         public string ProfileImg { get; set; }
-        public string SalesGoodType { get; set; }
+        public EnumSalesGoodType SalesGoodType { get; set; }
         public string Description { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
     }
 }

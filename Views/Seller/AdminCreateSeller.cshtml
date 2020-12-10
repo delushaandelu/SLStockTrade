@@ -1,0 +1,91 @@
+﻿@model Seller
+
+@{ 
+    ViewBag.Title = "Create Seller";
+}
+
+<h3>Crate New Seller</h3>
+
+<br/>
+
+<div class="text-right">
+    <a asp-controller="Seller" asp-action="AdminIndex" class="btn btn-primary">Back</a>
+</div>
+
+<br/>
+<form asp-controller="Seller" asp-action="AdminCreateSeller" method="post">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="BusinessName"></label>
+            <input asp-for="BusinessName" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="InChargePerson"></label>
+            <input asp-for="InChargePerson" class="form-control" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Country"></label>
+            <select class="form-control" asp-for="Country" asp-items="Html.GetEnumSelectList<EnumCountry>()"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Location"></label>
+            <input asp-for="Location" class="form-control" placeholder="City" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" placeholder="Full Address including Door number" />
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Telephone"></label>
+            <input asp-for="Telephone" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Mobile"></label>
+            <input asp-for="Mobile" class="form-control" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Web"></label>
+            <input asp-for="Web" class="form-control" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label asp-for="PlatformCharge"></label>
+            <input asp-for="PlatformCharge" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="RegistredDate"></label>
+            <input type="date" asp-for="RegistredDate" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="SalesGoodType"></label>
+            <select class="form-control" asp-for="SalesGoodType" asp-items="Html.GetEnumSelectList<EnumSalesGoodType>()"></select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="ProfileImg"></label>
+            <input asp-for="ProfileImg" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="BannerImg"></label>
+            <input asp-for="BannerImg" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" placeholder="Full Address including Door number" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
