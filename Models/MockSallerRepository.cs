@@ -18,10 +18,46 @@ namespace SL_StockTrade.Models
             };
         }
 
+        public Seller AdmimUpdateSeller(Seller seller)
+        {
+            Seller sellerModel = _sellerList.FirstOrDefault(e => e.Id == seller.Id);
+            if (sellerModel != null)
+            {
+                sellerModel.BusinessName        = seller.BusinessName;
+                sellerModel.InChargePerson      = seller.InChargePerson;
+                sellerModel.Country             = seller.Country;
+                sellerModel.Location            = seller.Location;
+                sellerModel.Address             = seller.Address;
+                sellerModel.Telephone           = seller.Telephone;
+                sellerModel.Mobile              = seller.Mobile;
+                sellerModel.Email               = seller.Email;
+                sellerModel.Web                 = seller.Web;
+                sellerModel.PlatformCharge      = seller.PlatformCharge;
+                sellerModel.RegistredDate       = seller.RegistredDate;
+                sellerModel.BannerImg           = seller.BannerImg;
+                sellerModel.ProfileImg          = seller.ProfileImg;
+                sellerModel.SalesGoodType       = seller.SalesGoodType;
+                sellerModel.Description         = seller.Description;
+            }
+
+            return seller;
+        }
+
         public Seller AdminCreateSeller(Seller seller)
         {
             seller.Id = _sellerList.Max(e => e.Id) + 1;
             _sellerList.Add(seller);
+            return seller;
+        }
+
+        public Seller AdminDeleteSeller(int Id)
+        {
+            Seller seller = _sellerList.FirstOrDefault(e => e.Id == Id);
+            if(seller != null)
+            {
+                _sellerList.Remove(seller);
+            }
+
             return seller;
         }
 
