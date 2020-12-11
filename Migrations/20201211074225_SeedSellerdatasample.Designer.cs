@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SL_StockTrade.Models;
 
 namespace SL_StockTrade.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201211074225_SeedSellerdatasample")]
+    partial class SeedSellerdatasample
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,26 +83,7 @@ namespace SL_StockTrade.Migrations
                             Country = 1,
                             Description = "some textsome textsome textsome textsome textsome text",
                             Email = "delushaan@outlook.com",
-                            InChargePerson = "Ruchiragna",
-                            Location = "Downtown",
-                            Mobile = "0000000000",
-                            PlatformCharge = 5.7999999999999998,
-                            ProfileImg = "prof",
-                            RegistredDate = "12/11/2020 12:00:00 AM",
-                            SalesGoodType = 1,
-                            Telephone = "1111111111",
-                            Web = "www.google.com"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "Downtown center",
-                            BannerImg = "img",
-                            BusinessName = "Ruchiragna Masala Shop",
-                            Country = 1,
-                            Description = "some textsome textsome textsome textsome textsome text",
-                            Email = "delushaan@outlook.com",
-                            InChargePerson = "Ruchiragna",
+                            InChargePerson = "Delushaan Delu",
                             Location = "Downtown",
                             Mobile = "0000000000",
                             PlatformCharge = 5.7999999999999998,

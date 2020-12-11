@@ -15,5 +15,10 @@ namespace SL_StockTrade.Models
         }
 
         public DbSet<Seller> Sellers { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.SeedData();
+        }
     }
 }
