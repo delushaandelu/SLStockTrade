@@ -53,8 +53,21 @@ namespace SL_StockTrade.Controllers
             return View(sellerDetailsViewModel);
         }
 
+        [HttpGet]
         public ViewResult AdminCreateSeller()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AdminCreateSeller(Seller seller)
+        {
+            if(ModelState.IsValid)
+            {
+                Seller newSeller = _sallesRepository.AdminCreateSeller(seller);
+                return RedirectToAction("AdminDetails", new { id = newSeller.Id });
+            }
+
             return View();
         }
     }

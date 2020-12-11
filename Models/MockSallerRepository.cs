@@ -18,6 +18,13 @@ namespace SL_StockTrade.Models
             };
         }
 
+        public Seller AdminCreateSeller(Seller seller)
+        {
+            seller.Id = _sellerList.Max(e => e.Id) + 1;
+            _sellerList.Add(seller);
+            return seller;
+        }
+
         public IEnumerable<Seller> GetAllSellers()
         {
             return _sellerList;
