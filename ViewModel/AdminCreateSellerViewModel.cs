@@ -48,7 +48,7 @@ namespace SL_StockTrade.ViewModel
         public string RegistredDate { get; set; }
 
         [Display(Name = "Profile Cover Image")]
-        public string BannerImg { get; set; }
+        public IFormFile BannerPic { get; set; }
 
         [Display(Name = "Profile Image")]
         public IFormFile ProfilePic { get; set; }

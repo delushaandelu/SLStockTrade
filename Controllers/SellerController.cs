@@ -69,6 +69,8 @@ namespace SL_StockTrade.Controllers
             if(ModelState.IsValid)
             {
                 string uniqueFileName = null;
+                string uniqueBannerName = null;
+
                 if(model.ProfilePic != null)
                 {
                     string uploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "img/Profile");
@@ -76,6 +78,15 @@ namespace SL_StockTrade.Controllers
                     string filePath = Path.Combine(uploadFolder, uniqueFileName);
                     model.ProfilePic.CopyTo(new FileStream(filePath, FileMode.Create));
                 }
+
+                if (model.BannerPic != null)
+                {
+                    string uploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "img/Cover");
+                    uniqueBannerName = Guid.NewGuid().ToString() + "_" + model.BannerPic.FileName;
+                    string filePath = Path.Combine(uploadFolder, uniqueBannerName);
+                    model.BannerPic.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+
 
                 Seller newSeller = new Seller
                 {
@@ -90,7 +101,7 @@ namespace SL_StockTrade.Controllers
                     Web = model.Web,
                     PlatformCharge = model.PlatformCharge,
                     RegistredDate = model.RegistredDate,
-                    BannerImg = model.BannerImg,
+                    BannerImg = uniqueBannerName,
                     ProfileImg = uniqueFileName,
                     SalesGoodType = model.SalesGoodType,
                     Description = model.Description
