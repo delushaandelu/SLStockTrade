@@ -23,16 +23,52 @@ namespace SL_StockTrade.Controllers
             var model = _sallesRepository.GetAllSellers();
             return View(model);
         }
-        
-        public ViewResult Details()
+              
+        public ViewResult Details(int id)
         {
             SellerDetailsViewModel sellerDetailsViewModel = new SellerDetailsViewModel()
             {
-                Seller = _sallesRepository.GetSeller(1),
+                Seller = _sallesRepository.GetSeller(id),
                 PageTitle = "Seller Details"
             };
 
             return View(sellerDetailsViewModel);
+        }
+
+        //Admin Side Controls
+        public ViewResult AdminIndex()
+        {
+            var model = _sallesRepository.GetAllSellers();
+            return View(model);
+        }
+
+        public ViewResult AdminDetails(int id)
+        {
+            SellerDetailsViewModel sellerDetailsViewModel = new SellerDetailsViewModel()
+            {
+                Seller = _sallesRepository.GetSeller(id),
+                PageTitle = "Seller Details"
+            };
+
+            return View(sellerDetailsViewModel);
+        }
+
+        [HttpGet]
+        public ViewResult AdminCreateSeller()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AdminCreateSeller(Seller seller)
+        {
+            if(ModelState.IsValid)
+            {
+                Seller newSeller = _sallesRepository.AdminCreateSeller(seller);
+                return RedirectToAction("AdminDetails", new { id = newSeller.Id });
+            }
+
+            return View();
         }
     }
 }

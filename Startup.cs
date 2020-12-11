@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -32,8 +33,10 @@ namespace SL_StockTrade
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContextPool<AppDbContext>(options => 
+                                                    options.UseSqlServer(_config.GetConnectionString("StoreDbConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<ISellerRepository, MockSallerRepository>();
+            services.AddScoped<ISellerRepository, SqlSellerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +59,7 @@ namespace SL_StockTrade
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Seller}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

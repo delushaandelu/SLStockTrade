@@ -1,23 +1,26 @@
-﻿@model IEnumerable<SL_StockTrade.Models.Seller>
+﻿@model IEnumerable<Seller>
 
-<table class="table-bordered">
-    <thead>
-        <tr>
-            <th>Business Name</th>
-            <th>Location</th>
-            <th>Sales Good Type</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var seller in Model)
-        {
-            <tr>
-                <td>@seller.BusinessName</td>
-                <td>@seller.Location</td>
-                <td>@seller.SalesGoodType</td>
-                <td>@seller.Description</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<h3>Available Shops</h3>
+
+
+<div class="card-deck">
+    @foreach(var seller in Model)
+    {
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="~/img/Profile/default.jpg" style="width:200px; height:240px" asp-append-version="true">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@seller.BusinessName</h5>
+                    <p class="card-text">@seller.Description</p>
+                    <p class="card-text"><small class="text-muted">Location : @seller.Location - Since : @seller.RegistredDate </small></p>
+                    <a href="#" class="btn btn-success">Show now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+

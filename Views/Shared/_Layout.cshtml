@@ -36,6 +36,7 @@
                                 Buyer
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-controller="Seller" asp-action="Index">All Shops</a>
                                 <a class="dropdown-item" href="#">Action</a>
                                 <a class="dropdown-item" href="#">Another action</a>
                             </div>
@@ -45,7 +46,6 @@
                                 Seller
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
                                 <a class="dropdown-item" href="#">Another action</a>
                             </div>
                         </li>
@@ -54,8 +54,8 @@
                                 System Admin
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" asp-action="AdminIndex" asp-controller="Seller">Manage Sellers</a>
+                                <a class="dropdown-item" asp-action="AdminCreateSeller" asp-controller="Seller">Create New Seller</a>
                             </div>
                         </li>
                         <li class="nav-item">

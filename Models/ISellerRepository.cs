@@ -9,5 +9,8 @@ namespace SL_StockTrade.Models
     {
         Seller GetSeller(int Id);
         IEnumerable<Seller> GetAllSellers();
+        Seller AdminCreateSeller(Seller seller);
+        Seller AdmimUpdateSeller(Seller seller);
+        Seller AdminDeleteSeller(int Id);
     }
 }
