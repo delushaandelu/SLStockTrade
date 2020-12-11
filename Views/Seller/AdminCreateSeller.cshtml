@@ -1,4 +1,4 @@
-﻿@model Seller
+﻿@model AdminCreateSellerViewModel
 @inject ISellerRepository _sellerRepository
 
 @{ 
@@ -14,7 +14,7 @@
 </div>
 
 <br/>
-<form asp-controller="Seller" asp-action="AdminCreateSeller" method="post">
+<form enctype="multipart/form-data" asp-controller="Seller" asp-action="AdminCreateSeller" method="post">
 
     <div asp-validation-summary="All" class="text-danger"></div>
 
@@ -91,12 +91,18 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label asp-for="ProfileImg"></label>
-            <input asp-for="ProfileImg" class="form-control" />
+            <label asp-for="ProfilePic"></label>
+            <div class="custom-file">
+                <input asp-for="ProfilePic" class="form-control custom-file-input" />
+                <label class="custom-file-label">Choose File...</label>
+            </div>
         </div>
         <div class="form-group col-md-6">
             <label asp-for="BannerImg"></label>
-            <input asp-for="BannerImg" class="form-control" />
+            <div class="custom-file">
+                <input asp-for="BannerImg" class="form-control custom-file-input" />
+                <label class="custom-file-label">Choose File...</label>
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -106,4 +112,16 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Create</button>
+
+    @section Scripts{ 
+        <script>
+            $(document).ready(function () {
+                $('.custom-file-input').on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-file-label').html(fileName);
+                });
+            });
+        </script>
+    }
+
 </form>

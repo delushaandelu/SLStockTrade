@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using SL_StockTrade.Models;
 using SL_StockTrade.ViewModel;
@@ -12,10 +14,12 @@ namespace SL_StockTrade.Controllers
     {
         //Constructor Injection
         private readonly ISellerRepository _sallesRepository;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-        public SellerController(ISellerRepository sallesRepository)
+        public SellerController(ISellerRepository sallesRepository, IHostingEnvironment hostingEnvironment)
         {
             _sallesRepository = sallesRepository;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         public ViewResult Index()
@@ -60,11 +64,39 @@ namespace SL_StockTrade.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdminCreateSeller(Seller seller)
+        public IActionResult AdminCreateSeller(AdminCreateSellerViewModel model)
         {
             if(ModelState.IsValid)
             {
-                Seller newSeller = _sallesRepository.AdminCreateSeller(seller);
+                string uniqueFileName = null;
+                if(model.ProfilePic != null)
+                {
+                    string uploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "img/Profile");
+                    uniqueFileName =  Guid.NewGuid().ToString() + "_" + model.ProfilePic.FileName;
+                    string filePath = Path.Combine(uploadFolder, uniqueFileName);
+                    model.ProfilePic.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+
+                Seller newSeller = new Seller
+                {
+                    BusinessName = model.BusinessName,
+                    InChargePerson = model.InChargePerson,
+                    Country = model.Country,
+                    Location = model.Location,
+                    Address = model.Address,
+                    Telephone = model.Telephone,
+                    Mobile = model.Mobile,
+                    Email = model.Email,
+                    Web = model.Web,
+                    PlatformCharge = model.PlatformCharge,
+                    RegistredDate = model.RegistredDate,
+                    BannerImg = model.BannerImg,
+                    ProfileImg = uniqueFileName,
+                    SalesGoodType = model.SalesGoodType,
+                    Description = model.Description
+                };
+
+                _sallesRepository.AdminCreateSeller(newSeller);
                 return RedirectToAction("AdminDetails", new { id = newSeller.Id });
             }
 

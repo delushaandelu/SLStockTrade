@@ -8,7 +8,7 @@ namespace SL_StockTrade.Models
 {
     public static class ModelBuilderExtentions
     {
-        public static void SeedData(this ModelBuilder modelbuilder)
+        public static void SeedData(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Seller>().HasData(
                     new Seller

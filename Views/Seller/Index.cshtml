@@ -6,10 +6,12 @@
 <div class="card-deck">
     @foreach(var seller in Model)
     {
+     var photoPath = "~/img/Profile/" + (seller.ProfileImg ?? "default.jpg");
+
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="~/img/Profile/default.jpg" style="width:200px; height:240px" asp-append-version="true">
+                <img src="@photoPath" class="card-img" style="width:200px; height:240px" asp-append-version="true"/>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
