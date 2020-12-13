@@ -49,7 +49,7 @@ namespace SL_StockTrade
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseStatusCodePagesWithRedirects("/Error/{0}");
             }
                         
             app.UseStaticFiles();

@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\HomeSlide\" />
-    <Folder Include="wwwroot\img\Cover\" />
     <Folder Include="wwwroot\img\Profile\" />
   </ItemGroup>
 
