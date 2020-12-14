@@ -1,6 +1,8 @@
 ﻿@model SellerDetailsViewModel
 @{
     ViewBag.Title = "Seller List";
+    var photoPath = "~/img/Profile/" + (Model.Seller.ProfileImg ?? "default.jpg");
+    var bannerPath = "~/img/Cover/" + (Model.Seller.BannerImg ?? "default.jpg");
 }
 
 <h3>Seller Profile</h3>
@@ -10,29 +12,52 @@
 </div>
 <br/>
 
-<table class="table">
+<div class="form-row">
+    <div class="col-md-12">
+        <img src="@bannerPath" class="col-lg-12" style="height:200px;" asp-append-version="true" alt="...">
+    </div>
+</div>
 
-    <thead>
-        <tr>          
-            <th scope="col">Catagory</th>
-            <th scope="col">Details</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr> <td>Business Name</td>     <td>@Model.Seller.BusinessName</td> </tr>
-        <tr> <td>Incharge Person</td>   <td>@Model.Seller.InChargePerson</td> </tr>
-        <tr> <td>Country</td>           <td>@Model.Seller.Country</td> </tr>
-        <tr> <td>Location</td>          <td>@Model.Seller.Location</td> </tr>
-        <tr> <td>Address</td>           <td>@Model.Seller.Address</td> </tr>
-        <tr> <td>Telephone</td>         <td>@Model.Seller.Telephone</td> </tr>
-        <tr> <td>Mobile</td>            <td>@Model.Seller.Mobile</td> </tr>
-        <tr> <td>Email</td>             <td>@Model.Seller.Email</td> </tr>
-        <tr> <td>Web</td>               <td>@Model.Seller.Web</td> </tr>
-        <tr> <td>PlatformCharge</td>    <td>@Model.Seller.PlatformCharge</td> </tr>
-        <tr> <td>RegisterdDate</td>     <td>@Model.Seller.RegistredDate</td> </tr>
-        <tr> <td>BannerImg</td>         <td>@Model.Seller.BannerImg</td> </tr>
-        <tr> <td>ProfileImg</td>        <td>@Model.Seller.ProfileImg</td> </tr>
-        <tr> <td>SalesGoodType</td>     <td>@Model.Seller.SalesGoodType</td> </tr>
-        <tr> <td>Description</td>       <td>@Model.Seller.Description</td> </tr>
-    </tbody>
-</table>
+<br />
+
+<div class="form-row">
+    <div class="col-md-12">
+        <h2 class="text-center"><u>@Model.Seller.BusinessName</u></h2>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="col-md-6">
+        <img src="@photoPath" class="img-thumbnail" asp-append-version="true" alt="...">
+    </div>
+
+    <div class="col-md-6">
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Catagory</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> <td>Incharge Person</td>   <td>@Model.Seller.InChargePerson</td> </tr>
+                <tr> <td>Country</td>           <td>@Model.Seller.Country</td> </tr>
+                <tr> <td>Location</td>          <td>@Model.Seller.Location</td> </tr>
+                <tr> <td>Address</td>           <td>@Model.Seller.Address</td> </tr>
+                <tr> <td>Telephone</td>         <td>@Model.Seller.Telephone</td> </tr>
+                <tr> <td>Mobile</td>            <td>@Model.Seller.Mobile</td> </tr>
+                <tr> <td>Email</td>             <td>@Model.Seller.Email</td> </tr>
+                <tr> <td>Web</td>               <td>@Model.Seller.Web</td> </tr>
+                <tr> <td>PlatformCharge</td>    <td>@Model.Seller.PlatformCharge</td> </tr>
+                <tr> <td>RegisterdDate</td>     <td>@Model.Seller.RegistredDate</td> </tr>
+                <tr> <td>SalesGoodType</td>     <td>@Model.Seller.SalesGoodType</td> </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-12">
+        <h6 class="text-center">@Model.Seller.Description</h6>
+    </div>
+
+</div>

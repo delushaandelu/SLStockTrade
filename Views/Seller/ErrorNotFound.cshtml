@@ -1,0 +1,17 @@
+﻿@model int
+
+@{ 
+    ViewBag.Title = "404 not found!";
+}
+
+<div class="alert alert-danger mt-1 mb-1">
+    <h4>404 Not Found Error:</h4>
+    <br/>
+    <h5>
+        Seller details cannot be found! We only know that. 
+    </h5>
+</div>
+
+<a asp-action="index" asp-controller="seller" class="btn btn-outline-success">
+    Click here to see the listed sellers!
+</a>

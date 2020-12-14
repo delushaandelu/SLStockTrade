@@ -1,22 +1,27 @@
-﻿@model AdminCreateSellerViewModel
+﻿@model AdminEditSellerViewModel
 @inject ISellerRepository _sellerRepository
 
-@{ 
-    ViewBag.Title = "Create Seller";
+@{
+    ViewBag.Title = "Edit Seller";
+    var photoPath = "~/img/Profile/" + (Model.ExisitingProfilePhotoPath ?? "default.jpg");
+    var bannerPath = "~/img/Cover/" + (Model.ExisitingBannerPhotoPath ?? "default.jpg");
 }
 
 <h3>Create New Seller</h3>
 
-<br/>
+<br />
 
 <div class="text-right">
     <a asp-controller="Seller" asp-action="AdminIndex" class="btn btn-primary">Back</a>
 </div>
 
-<br/>
-<form enctype="multipart/form-data" asp-controller="Seller" asp-action="AdminCreateSeller" method="post">
+<br />
+<form enctype="multipart/form-data" asp-controller="Seller" asp-action="AdminEditSeller" method="post">
 
     <div asp-validation-summary="All" class="text-danger"></div>
+    <input hidden asp-for="Id" />
+    <input hidden asp-for="ExisitingProfilePhotoPath" />
+    <input hidden asp-for="ExisitingBannerPhotoPath" />
 
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -94,26 +99,37 @@
             <label asp-for="ProfilePic"></label>
             <div class="custom-file">
                 <input asp-for="ProfilePic" class="form-control custom-file-input" />
-                <label class="custom-file-label">Choose File...</label>
+                <label class="custom-file-label">Click here to change photo...</label>
             </div>
         </div>
         <div class="form-group col-md-6">
             <label asp-for="BannerPic"></label>
             <div class="custom-file">
-                <input asp-for="BannerPic" class="form-control custom-file-input" />
-                <label class="custom-file-label">Choose File...</label>
+                <input asp-for="BannerPic"  class="form-control custom-file-input" />
+                <label class="custom-file-label">Click here to change photo...</label>
             </div>
         </div>
     </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <img src="@photoPath" asp-append-version="true" class="img-thumbnail"/>
+        </div>
+        <div class="form-group col-md-6">
+            <img src="@bannerPath" asp-append-version="true" class="img-thumbnail" />
+        </div>
+    </div>
+
     <div class="form-group">
         <label asp-for="Description"></label>
         <input asp-for="Description" class="form-control" placeholder="Full Address including Door number" />
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Update Changes</button>
+    <a asp-controller="seller" asp-action="index" class="btn btn-danger">Cancel</a>
 
-    @section Scripts{ 
+    @section Scripts{
         <script>
             $(document).ready(function () {
                 $('.custom-file-input').on("change", function () {

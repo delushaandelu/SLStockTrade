@@ -6,21 +6,27 @@
 <div class="card-deck">
     @foreach(var seller in Model)
     {
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="~/img/Profile/default.jpg" style="width:200px; height:240px" asp-append-version="true">
+     var photoPath = "~/img/Profile/" + (seller.ProfileImg ?? "default.jpg");
+
+
+
+    <div class="card md-3" style="min-width: 30rem; max-width:30.5%;">
+        <div class="card-header font-weight-bold">
+            @seller.BusinessName
+        </div>
+        <div class="card-body">
+            <div class="col-lg-3 text-center">
+                <img src="@photoPath" class="card-img" style="width:200px; height:240px" asp-append-version="true" />
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">@seller.BusinessName</h5>
-                    <p class="card-text">@seller.Description</p>
-                    <p class="card-text"><small class="text-muted">Location : @seller.Location - Since : @seller.RegistredDate </small></p>
-                    <a href="#" class="btn btn-success">Show now</a>
-                </div>
-            </div>
+            <h5 class="card-title">@seller.SalesGoodType</h5>
+            <p class="card-text">@seller.Description</p>
+            <a href="#" class="btn btn-success">Shop Here...</a>
+        </div>
+        <div class="card-footer text-muted">
+            Location : @seller.Location | Since : @seller.RegistredDate
         </div>
     </div>
+
     }
 </div>
 
