@@ -29,7 +29,8 @@ namespace SL_StockTrade.Controllers
         }
               
         public ViewResult Details(int id)
-        {
+        {            
+
             SellerDetailsViewModel sellerDetailsViewModel = new SellerDetailsViewModel()
             {
                 Seller = _sallesRepository.GetSeller(id),
@@ -48,6 +49,7 @@ namespace SL_StockTrade.Controllers
 
         public ViewResult AdminDetails(int id)
         {
+            throw new Exception("Error in details view");
             Seller seller = _sallesRepository.GetSeller(id);
             if(seller == null)
             {

@@ -6,10 +6,18 @@
     <UserSecretsId>16e9f0da-95b5-4e68-a48f-b53c54a21a25</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20201214033558_AddingIdentity.cs" />
+    <Compile Remove="Migrations\20201214033558_AddingIdentity.Designer.cs" />
+    <Compile Remove="Migrations\20201214033717_AddingIdentity.cs" />
+    <Compile Remove="Migrations\20201214033717_AddingIdentity.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.3" />
   </ItemGroup>
 
 
