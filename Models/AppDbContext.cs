@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SL_StockTrade.Models
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<SellerDeviceData>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) 
             : base(options)

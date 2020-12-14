@@ -1,4 +1,4 @@
-﻿@inject SignInManager<IdentityUser> signInManager;
+﻿@inject SignInManager<SellerDeviceData> signInManager;
 
 <!DOCTYPE html>
 <html>
@@ -9,6 +9,9 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -58,18 +61,20 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" asp-action="AdminIndex" asp-controller="Seller">Manage Sellers</a>
                                 <a class="dropdown-item" asp-action="AdminCreateSeller" asp-controller="Seller">Create New Seller</a>
+                                <a class="dropdown-item" asp-action="CreateRole" asp-controller="Admin">Create New Role</a>
+                                <a class="dropdown-item" asp-action="ListRoles" asp-controller="Admin">View All Roles</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav ml-auto  my-2 my-lg-0">
+                    <ul class="navbar-nav ml-auto  my-2 my-lg-0 float-right">
                         @if (signInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
                                 <form method="post" asp-action="logout" asp-controller="account">
-                                    <button type="submit" class="nav-link btn btn-link py-0" style="width:auto">
+                                    <button type="submit" class="nav-link btn btn-link py-0 btn-warning" style="width:auto">
                                         Logout @User.Identity.Name
                                     </button>
                                 </form>

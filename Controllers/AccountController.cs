@@ -1,37 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Owin.Security.OAuth;
+using SL_StockTrade.Models;
 using SL_StockTrade.ViewModel;
+
 
 namespace SL_StockTrade.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<SellerDeviceData> userManager;
+        private readonly SignInManager<SellerDeviceData> signInManager;
 
-        public AccountController(UserManager<IdentityUser> userManager,
-                                    SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<SellerDeviceData> userManager,
+                                    SignInManager<SellerDeviceData> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult SellerRegister()
         {
             return View();
         }
 
+
         [HttpPost]
+        [AllowAnonymous]
+        [Obsolete]
         public async Task<IActionResult> SellerRegister(SellerRegisterViewModel model)
         {
             if(ModelState.IsValid)
             {
-                var user = new IdentityUser{ UserName = model.Email, Email = model.Email };
+                //geting current ip
+                string hostName = Dns.GetHostName();
+                string myIP = Dns.GetHostByName(hostName).AddressList[0].ToString();
+
+                var user = new SellerDeviceData
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    deviceUsername = Environment.UserName,
+                    ipaddress = myIP,
+                    deviceLocation = hostName
+                };
                 var restult = await userManager.CreateAsync(user, model.Password);
 
                 if(restult.Succeeded)
@@ -49,6 +69,23 @@ namespace SL_StockTrade.Controllers
             return View(model);
         }
 
+        [AcceptVerbs("Get", "Post")]
+        [AllowAnonymous]
+        public async Task<IActionResult> IsEmailInUse(string email)
+        {
+            var user = await userManager.FindByEmailAsync(email);
+
+            if(user == null)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json($"Email : {email} is already in use");
+            }    
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -57,13 +94,15 @@ namespace SL_StockTrade.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult SellerSignIn()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> SellerSignIn(SellerLoginViewModel model)
+        [AllowAnonymous]
+        public async Task<IActionResult> SellerSignIn(SellerLoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {                
@@ -71,7 +110,14 @@ namespace SL_StockTrade.Controllers
 
                 if (restult.Succeeded)
                 {
-                    return RedirectToAction("index", "Home");
+                    if(!string.IsNullOrEmpty(returnUrl))
+                    {
+                        return LocalRedirect(returnUrl);
+                    }
+                    else 
+                    { 
+                        return RedirectToAction("index", "Home");
+                    }
                 }
 
                 ModelState.AddModelError(string.Empty, "invalid login Attempt");

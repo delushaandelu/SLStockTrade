@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using SL_StockTrade.Models;
@@ -21,7 +22,7 @@ namespace SL_StockTrade.Controllers
             _sallesRepository = sallesRepository;
             this.hostingEnvironment = hostingEnvironment;
         }
-
+                
         public ViewResult Index()
         {
             var model = _sallesRepository.GetAllSellers();
@@ -49,7 +50,6 @@ namespace SL_StockTrade.Controllers
 
         public ViewResult AdminDetails(int id)
         {
-            throw new Exception("Error in details view");
             Seller seller = _sallesRepository.GetSeller(id);
             if(seller == null)
             {
