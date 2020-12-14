@@ -27,8 +27,9 @@ namespace SL_StockTrade.Controllers
             {
                 case 404:
                     ViewBag.ErrorMessage = "Sorry, the resource you reqested could not be found. Thats all we know.";
-                    logger.LogWarning($"404 Error occured. Path ={statusCodeResult.OriginalPath} and querystring = {statusCodeResult.OriginalQueryString}");
-
+                    break;
+                case 405:
+                    ViewBag.ErrorMessage = "Sorry, the resource you reqested could not be found. Thats all we know.";
                     break;
             }
 
