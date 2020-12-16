@@ -11,6 +11,7 @@ using SL_StockTrade.ViewModel;
 
 namespace SL_StockTrade.Controllers
 {
+    [Authorize(Roles = "Admin,Seller")]
     public class SellerController : Controller
     {
         //Constructor Injection
